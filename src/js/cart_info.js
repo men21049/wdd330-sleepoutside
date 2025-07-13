@@ -4,9 +4,7 @@ function updateCartBadge() {
   const badge = document.getElementById("cartBadge");
   const totalItems = cartItems.length;
 
-  console.log(totalItems); // Debugging line to check totalItems value
-
-  if (totalItems > 0) {
+  if (!cartItems.isnull && totalItems > 0) {
     badge.textContent = totalItems > 99 ? "99+" : totalItems;
     badge.classList.remove("hidden");
   } else {
