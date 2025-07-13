@@ -41,5 +41,5 @@ export function renderListWithTemplate(
   if (clear) {
     parentElement.innerHTML = "";
   }
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+  parentElement?.insertAdjacentHTML(position, htmlStrings.join(""));
 }
