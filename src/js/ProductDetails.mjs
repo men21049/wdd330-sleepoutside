@@ -1,4 +1,10 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import {
+  getLocalStorage,
+  setLocalStorage,
+  loadHeaderFooter,
+} from "./utils.mjs";
+
+loadHeaderFooter();
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -38,11 +44,12 @@ function productDetailsTemplate(product) {
   productImage.src = product.Image;
   productImage.alt = product.NameWithoutBrand;
 
-  document.getElementById("productPrice").textContent = product.FinalPrice;
+  document.getElementById("productPrice").textContent =
+    "Price: $" + product.FinalPrice;
   document.getElementById("productColor").textContent =
-    product.Colors[0].ColorName;
+    "Color: " + product.Colors[0].ColorName;
   document.getElementById("productDesc").innerHTML =
-    product.DescriptionHtmlSimple;
+    "Description: " + product.DescriptionHtmlSimple;
 
   document.getElementById("addToCart").dataset.id = product.Id;
 }
