@@ -27,7 +27,14 @@ export default class ProductDetails {
 
   addProductToCart() {
     const cartItems = getLocalStorage("so-cart") || [];
-    cartItems.push(this.product);
+    const qtyAdd = 1; // hardcoded for now, could be replaced with a quantity input field
+    const idx = cartItems.findIndex((item) => item.Id === this.product.Id);
+    if (idx > -1) {
+      cartItems[idx].qty += qtyAdd; // increment quantity if product already exists in cart
+    } else {
+      cartItems.push({ ...this.product, qty: qtyAdd }); // add new product with quantity
+    }
+
     setLocalStorage("so-cart", cartItems);
   }
 

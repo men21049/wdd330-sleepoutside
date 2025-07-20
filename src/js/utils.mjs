@@ -66,4 +66,20 @@ export async function loadHeaderFooter() {
 
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
+
+  updateCartBadge();
+}
+
+function updateCartBadge() {
+  const cart = getLocalStorage("so-cart");
+  const cartItems = cart ? JSON.parse(JSON.stringify(cart)) : [];
+  const badge = document.getElementById("cartBadge");
+  const totalItems = cartItems.length || 0;
+
+  if (totalItems > 0 && cartItems) {
+    badge.textContent = totalItems > 99 ? "99+" : totalItems;
+    badge.classList.remove("hidden");
+  } else {
+    badge.classList.add("hidden");
+  }
 }
