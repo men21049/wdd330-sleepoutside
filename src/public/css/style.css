@@ -138,11 +138,11 @@ button {
 
 .cart-badge {
   position: absolute;
-  top: -6px;
+  top: -2px;
   right: -6px;
   background-color: red;
   color: white;
-  padding: 2px 6px;
+  padding: 2px 2px;
   font-size: 12px;
   border-radius: 50%;
   font-weight: bold;
@@ -432,6 +432,46 @@ button:hover {
   color: #6366f1;
 }
 
+/* alert styles */
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em;
+  background-color: var(--primary-color);
+  border: 1px solid darkorange;
+}
+.alert > p {
+  margin: 0;
+}
+
+.sort-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem;
+  font-family: sans-serif;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  transition: all 0.5s ease;
+}
+
+.product-card {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.product-card.entering {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.product-card.entered {
+  opacity: 1;
+  transform: scale(1);
+}
 /* Medium screens (tablet+) */
 @media (min-width: 600px) {
   .order-summary {
