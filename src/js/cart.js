@@ -1,11 +1,15 @@
 import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import CheckoutProcess from "./CheckoutProcess.mjs";
 
 loadHeaderFooter();
+const checkoutP = new CheckoutProcess("so-cart", ".cart-total");
+checkoutP.init();
 
-function renderCartContents() {
+async function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  const total = getTotalCostFromCart(cartItems);
+  const total = (await checkoutP.getSubTotalFromCart()).toFixed(2);
+  console.log(total);
   document.querySelector(".product-list-cart").innerHTML = htmlItems.join("");
   document.querySelector(".cart-total").textContent = `Total: $${total}`;
 }
@@ -28,13 +32,13 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
-function getTotalCostFromCart(cartItems) {
+/*export function getTotalCostFromCart(cartItems) {
   const total = cartItems.reduce((sum, item) => {
     const price = parseFloat(item.FinalPrice);
     return sum + (isNaN(price) ? 0 : price);
   }, 0);
 
   return total.toFixed(2);
-}
+}*/
 
 renderCartContents();
