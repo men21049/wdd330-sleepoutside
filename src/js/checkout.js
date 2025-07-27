@@ -8,7 +8,7 @@ order.init();
 
 // Add event listeners to fire calculateOrderTotal when the user changes the zip code
 document
-  .querySelector("#zipCode")
+  .querySelector("#zip")
   .addEventListener("blur", order.getOrderTotal.bind(order));
 
 // listening for click on the button

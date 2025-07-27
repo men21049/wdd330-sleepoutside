@@ -18,7 +18,7 @@
 
     <main class="divider">
       <section class="form">
-        <form action="">
+        <form name="checkout">
           <h2>Review & Place your Order</h2>
           <fieldset>
             <legend>Customer information:</legend>
@@ -30,22 +30,23 @@
           </fieldset>
           <fieldset>
             <legend>Customer Address</legend>
-            <label for="sAddress">Street Address</label>
-            <input type="text" name="saddress" id="saddres">
-            <label for="city"></label>
+            <label for="street">Street Address</label>
+            <input type="text" name="street" id="street">
+            <label for="city">City</label>
+            <input type="text" name="city" id="city">
             <label for="state">State</label>
             <input type="text" name="state" id="state">
-            <label for="zipCode">Zip Code</label>
-            <input type="text" name="zipCode" id="zipCode">
+            <label for="zip">Zip Code</label>
+            <input type="text" name="zip" id="zip">
           </fieldset>
           <fieldset>
             <legend>Payment</legend>
-            <label for="creditCard">Credit Card Number</label>
-            <input type="number" name="creditCard" id="creditCard">
-            <label for="expDate">Expiration Date:</label>
-            <input type="text" name="expDate" id="expDate">
-            <label for="secCode">Security Code</label>
-            <input type="text" name="secCode" id="secCode">
+            <label for="cardNumber">Credit Card Number</label>
+            <input type="number" name="cardNumber" id="cardNumber">
+            <label for="expiration">Expiration Date:</label>
+            <input type="text" name="expiration" id="expiration">
+            <label for="code">Security Code</label>
+            <input type="text" name="code" id="code">
           </fieldset>
           <button type="button" id="checkoutSubmit">Checkout</button>
         </form>

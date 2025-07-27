@@ -1,4 +1,17 @@
 import { getLocalStorage } from "./utils.mjs";
+import ExternalServices from "./ExternalServices.mjs";
+
+const services = new ExternalServices();
+
+function formDataToJSON(formElement) {
+  // convert the form data to a JSON object
+  const formData = new FormData(formElement);
+  const convertedJSON = {};
+  formData.forEach((value, key) => {
+    convertedJSON[key] = value;
+  });
+  return convertedJSON;
+}
 
 export default class CheckoutProcess {
   constructor(key, outputSelector) {
@@ -41,11 +54,11 @@ export default class CheckoutProcess {
     return total;
   }
 
-  async getITems() {
+  async packageItems() {
     const items = this.list.map((item) => ({
       id: item.Id,
-      price: item.FinalPrice,
       name: item.Name,
+      price: item.FinalPrice,
       quantity: 1,
     }));
     return items;
@@ -72,5 +85,24 @@ export default class CheckoutProcess {
     shipping.innerText = "$" + (await this.getShipping()).toFixed(2);
     const total = document.querySelector(this.outputSelector + " #total");
     total.innerText = "$" + (await this.getTotal()).toFixed(2);
+  }
+
+  async checkout() {
+    const formElement = document.forms["checkout"];
+    const order = formDataToJSON(formElement);
+
+    order.orderDate = new Date().toISOString();
+    order.orderTotal = (await this.getTotal()).toFixed(2);
+    order.tax = (await this.getTax()).toFixed(2);
+    order.shipping = (await this.getShipping()).toFixed(2);
+    order.items = this.packageItems();
+    console.log(order);
+
+    try {
+      const response = await services.checkout(order);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
